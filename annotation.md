@@ -33,3 +33,12 @@
 // nome
 // email
 // senha
+
+
+### Desafios
+
+1. Criar um CRUD de Books (Básico)
+   1. Pelo menos conter 3 dados
+2. Construir Relacionamento entre User e Books (Intermediario)
+   1. Dica Modificar o Model
+3. Modificar a rota de Show(User e Books) para retornar os dados desse relacionamento (Avançado)

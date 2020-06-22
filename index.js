@@ -1,11 +1,3 @@
-const express = require("express");
-const database = require("./src/database/database");
-const routes = require("./src/app/routes");
-
-const app = express();
-
-app.use(express.json());
-
-app.use(routes);
+const app = require("./src/app");
 
 app.listen(3333);
