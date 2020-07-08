@@ -59,7 +59,7 @@ class UserController {
             from: "user",
             localField: "user",
             foreignField: "_id",
-            as: "userBooks",
+            as: "booksUser",
           },
         },
       ]);
