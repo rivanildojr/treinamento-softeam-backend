@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const User = require("../models/User");
+const Book = require("../models/Book");
 
 class UserController {
   async index(req, res) {
@@ -46,7 +47,24 @@ class UserController {
         return res.status(404).json({ message: "Usuário não encontrado!" });
       }
 
-      return res.status(200).json(user);
+      const userBooks = await Book.aggregate([
+        {
+          $match: { user: user._id },
+        },
+        {
+          $project: { user: 0 },
+        },
+        {
+          $lookup: {
+            from: "user",
+            localField: "user",
+            foreignField: "_id",
+            as: "userBooks",
+          },
+        },
+      ]);
+
+      return res.status(200).json({ user, books: userBooks });
     } catch (error) {
       console.log({ error });
     }

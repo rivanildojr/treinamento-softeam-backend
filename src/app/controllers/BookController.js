@@ -14,12 +14,13 @@ class BookController {
 
   async store(req, res) {
     try {
-      const { name, author, publishing } = req.body;
+      const { name, author, publishing, user } = req.body;
 
       const book = await Book.create({
         name,
         author,
         publishing,
+        user,
       });
 
       return res.status(201).json(book);
@@ -37,6 +38,8 @@ class BookController {
       if (!book) {
         return res.status(404).json({ message: "Livro não encontrado!" });
       }
+
+      await book.populate("user").execPopulate();
 
       return res.status(200).json(book);
     } catch (error) {
