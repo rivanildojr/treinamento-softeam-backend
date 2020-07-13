@@ -36,7 +36,7 @@ UserSchema.methods = {
   },
 
   createToken() {
-    return jwt.sign({ id: this._id }, "treinamentoBack", {
+    return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
       expiresIn: 300000,
     });
   },

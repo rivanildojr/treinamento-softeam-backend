@@ -22,7 +22,7 @@ class AuthController {
         token: user.createToken(),
       });
     } catch (error) {
-      console.log({ error });
+      return res.status(500).Json({ message: "Error Interno do Servidor" });
     }
   }
 }

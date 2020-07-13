@@ -8,7 +8,7 @@ class BookController {
 
       return res.status(200).json(books);
     } catch (error) {
-      console.log({ error });
+      return res.status(500).Json({ message: "Error Interno do Servidor" });
     }
   }
 
@@ -25,7 +25,7 @@ class BookController {
 
       return res.status(201).json(book);
     } catch (error) {
-      console.log({ error });
+      return res.status(500).Json({ message: "Error Interno do Servidor" });
     }
   }
 
@@ -39,11 +39,9 @@ class BookController {
         return res.status(404).json({ message: "Livro não encontrado!" });
       }
 
-      await book.populate("user").execPopulate();
-
       return res.status(200).json(book);
     } catch (error) {
-      console.log({ error });
+      return res.status(500).Json({ message: "Error Interno do Servidor" });
     }
   }
 
@@ -67,7 +65,7 @@ class BookController {
 
       return res.status(200).json(book);
     } catch (error) {
-      console.log({ error });
+      return res.status(500).Json({ message: "Error Interno do Servidor" });
     }
   }
 
@@ -83,7 +81,7 @@ class BookController {
 
       return res.status(200).json(book);
     } catch (error) {
-      console.log({ error });
+      return res.status(500).Json({ message: "Error Interno do Servidor" });
     }
   }
 }
