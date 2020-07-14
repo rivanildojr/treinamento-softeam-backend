@@ -1,0 +1,196 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Projeto Criado para o treinamento de Backend da SofTeam",
+    "version": "1.0.0",
+    "title": "Treinamento Backend",
+    "termsOfService": "nullable",
+    "contact": {
+      "email": "rivanildoandrade@softeam.com.br"
+    },
+    "license": {
+      "name": "2020 © SofTeam",
+      "url": "https://softeam.com.br/"
+    }
+  },
+  "host": "localhost:3333",
+  "basePath": "/api/v1",
+  "schemes": ["http"],
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": ["users"],
+        "summary": "Criar um usuario",
+        "description": "Rota na qual criará um novo usuario no BD",
+        "operationId": "addUser",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Dados utilizados para criar um usuario",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso na Operação",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "409": {
+            "description": "Email já existente!"
+          },
+          "500": {
+            "description": "Error Interno do Servidor"
+          }
+        }
+      },
+      "get": {
+        "tags": ["users"],
+        "summary": "Retorna todos os Usuarios",
+        "description": "Rota que retornará todos os usuarios cadastrados",
+        "operationId": "listUsers",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Sucesso na Operação",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "500": {
+            "description": "Error Interno do Servidor"
+          }
+        }
+      }
+    },
+    "/user/{userID}": {
+      "get": {
+        "tags": ["users"],
+        "summary": "Retorna um usuario",
+        "description": "Rota que retornará um usuario cadastrado",
+        "operationId": "listUser",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "description": "ID do usuario",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso na Operação",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "404": {
+            "description": "Usuario não encontrado!"
+          },
+          "500": {
+            "description": "Error Interno do Servidor"
+          }
+        }
+      },
+      "put": {
+        "tags": ["users"],
+        "summary": "atualiza um usuario",
+        "description": "Rota que atualizará um usuario",
+        "operationId": "updateUser",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "description": "ID do usuario a ser atualizado",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Dados do usuario para a serem atualizado",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso na Operação",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado!"
+          },
+          "500": {
+            "description": "Error Interno do Servidor"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["users"],
+        "summary": "Deleta um usuario",
+        "description": "Rota que irá deletar um usuario",
+        "operationId": "deleteUser",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "description": "ID do usuario a ser deletado",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso na Operação",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado!"
+          },
+          "500": {
+            "description": "Error Interno do Servidor"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}

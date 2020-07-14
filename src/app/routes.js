@@ -2,11 +2,16 @@ const express = require("express");
 const routes = express.Router();
 const auth = require("./Middlewares/auth");
 const { celebrate, Joi, Segments } = require("celebrate");
+const swaggerUi = require("swagger-ui-express");
 
 const UserController = require("./controllers/UserController");
 const BookController = require("./controllers/BookController");
 const AuthController = require("./controllers/AuthController");
 const UserBooksController = require("./controllers/UserBooksController");
+const docs = require("../docs/swagger.json");
+
+routes.use("/api/v1/", swaggerUi.serve);
+routes.get("/api/v1/", swaggerUi.setup(docs));
 
 routes.post("/api/v1/login", AuthController.store);
 
